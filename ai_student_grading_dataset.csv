@@ -1,0 +1,95 @@
+Question,Model_Answer
+What is Machine Learning?,Machine learning is a subset of AI that enables systems to learn from data without explicit programming.
+What is Deep Learning?,Deep learning is a type of machine learning that uses neural networks with multiple layers to learn complex patterns.
+What is Artificial Intelligence?,Artificial intelligence is the simulation of human intelligence in machines that can think and learn.
+What is a Neural Network?,A neural network is a computational model inspired by the human brain used to recognize patterns.
+What is Overfitting?,Overfitting occurs when a model learns the training data too well and performs poorly on new data.
+What is Underfitting?,Underfitting occurs when a model is too simple to capture the underlying pattern of the data.
+What is CNN?,A convolutional neural network is a deep learning model used primarily for image processing tasks.
+What is RNN?,A recurrent neural network is a type of neural network designed for sequential data processing.
+What is an Autoencoder?,An autoencoder is a neural network used to learn efficient representations of data by encoding and decoding.
+What is Gradient Descent?,Gradient descent is an optimization algorithm used to minimize the loss function in machine learning models.
+,
+What is supervised learning?,Supervised learning is a type of machine learning where the model is trained using labeled data.
+What is unsupervised learning?,Unsupervised learning is a type of learning where the model finds patterns in unlabeled data.
+What is reinforcement learning?,Reinforcement learning is a learning method where an agent learns by interacting with an environment and receiving rewards.
+What is a loss function?,A loss function measures the difference between predicted output and actual output in a model.
+What is backpropagation?,Backpropagation is an algorithm used to update neural network weights by propagating errors backward.
+What is activation function?,An activation function introduces non-linearity into a neural network to help it learn complex patterns.
+What is ReLU?,ReLU is an activation function that outputs zero for negative inputs and the input itself for positive values.
+What is sigmoid function?,The sigmoid function maps input values into a range between 0 and 1.
+What is softmax function?,Softmax converts outputs into probabilities that sum to 1 for multi-class classification.
+What is batch size?,Batch size is the number of training samples used in one iteration of model training.
+What is epoch?,An epoch is one complete pass through the entire training dataset.
+What is dropout?,Dropout is a regularization technique where some neurons are randomly ignored during training.
+What is pooling in CNN?,Pooling reduces the spatial size of feature maps and helps in reducing computation.
+What is convolution?,Convolution is an operation used in CNNs to extract features from input images.
+What is feature extraction?,Feature extraction is the process of identifying important information from raw data.
+What is overfitting in deep learning?,Overfitting happens when a model performs well on training data but poorly on unseen data.
+What is LSTM?,LSTM is a type of recurrent neural network designed to handle long-term dependencies.
+What is GRU?,GRU is a simplified version of LSTM used for sequence modeling.
+What is a transformer model?,A transformer is a deep learning model that uses attention mechanisms for sequence processing.
+What is attention mechanism?,Attention allows a model to focus on important parts of input data while processing sequences.
+,
+What is bias in machine learning?,Bias is a parameter in a model that helps it fit the data better by shifting the output.
+What is variance in machine learning?,Variance refers to how much a model's predictions change with different training data.
+What is hyperparameter?,A hyperparameter is a configuration set before training that controls the learning process.
+What is learning rate?,Learning rate is a parameter that determines how much weights are updated during training.
+What is optimization algorithm?,An optimization algorithm is used to minimize the loss function by updating model parameters.
+What is stochastic gradient descent?,Stochastic gradient descent updates model weights using one training example at a time.
+What is mini-batch gradient descent?,Mini-batch gradient descent updates weights using small batches of data.
+What is data preprocessing?,Data preprocessing involves cleaning and transforming raw data before training.
+What is normalization?,"Normalization scales data to a specific range, usually between 0 and 1."
+What is standardization?,Standardization transforms data to have a mean of 0 and standard deviation of 1.
+What is feature scaling?,Feature scaling is the process of bringing all features to a similar range.
+What is dimensionality reduction?,Dimensionality reduction reduces the number of input variables while preserving important information.
+What is PCA?,Principal Component Analysis is a technique used for dimensionality reduction by transforming data into principal components.
+What is a confusion matrix?,A confusion matrix is a table used to evaluate classification performance.
+What is precision?,Precision measures how many predicted positive cases are actually correct.
+What is recall?,Recall measures how many actual positive cases are correctly identified.
+What is F1 score?,F1 score is the harmonic mean of precision and recall.
+What is cross-validation?,Cross-validation is a technique to evaluate model performance using multiple data splits.
+What is training data?,Training data is the dataset used to train a machine learning model.
+What is testing data?,Testing data is used to evaluate the performance of a trained model.
+,
+What is artificial neuron?,An artificial neuron is a basic unit of a neural network that processes input and produces an output.
+What is weight in neural networks?,Weight is a parameter that determines the importance of an input feature in a neural network.
+What is bias term in neural networks?,Bias is an additional parameter that allows the model to shift the activation function.
+What is forward propagation?,Forward propagation is the process of passing input data through the network to get the output.
+What is hidden layer?,A hidden layer is a layer between input and output layers where computations occur.
+What is output layer?,The output layer produces the final prediction of the neural network.
+What is input layer?,The input layer receives the initial data for the neural network.
+What is deep neural network?,A deep neural network is a neural network with multiple hidden layers.
+What is vanishing gradient problem?,"It is a problem where gradients become very small, making training difficult."
+What is exploding gradient problem?,It occurs when gradients become too large and cause unstable training.
+What is batch normalization?,Batch normalization normalizes layer inputs to improve training speed and stability.
+What is transfer learning?,Transfer learning uses a pre-trained model on a new related task.
+What is fine-tuning?,Fine-tuning adjusts a pre-trained model to improve performance on a specific task.
+What is data augmentation?,Data augmentation increases dataset size by creating modified versions of data.
+What is image classification?,Image classification assigns a label to an image based on its content.
+What is object detection?,Object detection identifies and locates objects in an image.
+What is segmentation?,Segmentation divides an image into meaningful parts or regions.
+What is sequence data?,"Sequence data is data where order matters, such as text or time series."
+What is time series data?,Time series data is a sequence of data points collected over time intervals.
+What is embedding in NLP?,Embedding is a representation of words as dense vectors capturing semantic meaning.
+,
+What is model evaluation?,Model evaluation is the process of assessing the performance of a trained model using metrics.
+What is accuracy?,Accuracy is the ratio of correctly predicted instances to total instances.
+What is classification problem?,A classification problem involves predicting discrete labels for input data.
+What is regression problem?,A regression problem involves predicting continuous values.
+What is dataset?,A dataset is a collection of data used for training and testing models.
+What is label in machine learning?,A label is the output or target variable that the model predicts.
+What is feature in machine learning?,A feature is an individual measurable property of the data.
+What is training process?,Training is the process of learning patterns from data by adjusting model parameters.
+What is testing process?,Testing evaluates how well the model performs on unseen data.
+What is validation data?,Validation data is used to tune model parameters during training.
+What is early stopping?,Early stopping halts training when performance stops improving to prevent overfitting.
+What is model generalization?,"Generalization refers to how well a model performs on new, unseen data."
+What is deep learning framework?,A deep learning framework is a library that simplifies building and training neural networks.
+What is TensorFlow?,TensorFlow is an open-source deep learning framework developed by Google.
+What is Keras?,Keras is a high-level API used to build and train deep learning models easily.
+What is PyTorch?,PyTorch is an open-source deep learning framework known for flexibility and dynamic computation graphs.
+What is inference in deep learning?,Inference is the process of using a trained model to make predictions.
+What is model deployment?,Model deployment is integrating a trained model into a real-world application.
+What is scalability in AI systems?,Scalability refers to the ability of a system to handle increasing amounts of data or users.
+What is real-time prediction?,Real-time prediction refers to making predictions instantly as data is received.

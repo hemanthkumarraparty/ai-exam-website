@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>AI Test</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+</head>
+
+<body>
+
+<div class="container">
+    <div class="card">
+
+        <h2>Test your knowledge in AI field</h2>
+        <h3 id="timer"></h3>
+
+        <!-- WARNING -->
+        <p id="warning" style="color:#ff4d4d; font-weight:bold;"></p>
+
+        <!-- PROGRESS -->
+        <div class="progress">
+            <div id="progressBar"></div>
+        </div>
+
+        <p id="qnum"></p>
+
+        <div id="quiz">
+            <p id="q"></p>
+            <textarea id="a"></textarea>
+            <button onclick="submitAns()">Submit</button>
+        </div>
+
+        <div id="result"></div>
+
+    </div>
+</div>
+
+<script>
+let sid = null;
+let time = 0;
+let interval;
+
+// TIMER
+function showTime(){
+    let m = Math.floor(time/60);
+    let s = time%60;
+    document.getElementById("timer").innerText =
+        "Time Left: " + m + ":" + (s<10?"0":"") + s;
+
+    // ⚠️ WARNING (LESS THAN 1 MINUTE)
+    if(time <= 60){
+        document.getElementById("warning").innerText =
+            "⚠ Hurry up! Less than 1 minute remaining!";
+    } else {
+        document.getElementById("warning").innerText = "";
+    }
+}
+
+// PROGRESS
+function updateProgress(i){
+    let percent = ((i+1)/5) * 100;
+    document.getElementById("progressBar").style.width = percent + "%";
+}
+
+// QUESTION NUMBER (WITH ANIMATION)
+function updateQuestionNumber(i){
+    let el = document.getElementById("qnum");
+
+    el.style.opacity = 0;
+
+    setTimeout(() => {
+        el.innerText = "Question " + (i + 1) + " of 5";
+        el.style.opacity = 1;
+    }, 200);
+}
+
+// TIMER START + AUTO SUBMIT
+function startTimer(){
+    clearInterval(interval);
+
+    interval = setInterval(()=>{
+        if(time > 0){
+            time--;
+            showTime();
+        } else {
+            clearInterval(interval);
+
+            // ⏳ AUTO SUBMIT WHEN TIME ENDS
+            autoSubmitExam();
+        }
+    },1000);
+}
+
+// AUTO SUBMIT
+async function autoSubmitExam(){
+    let r = await fetch("/answer",{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({session_id:sid,answer:""})
+    });
+
+    let d = await r.json();
+    showResult(d);
+}
+
+// START / RESUME
+async function start(){
+    sid = localStorage.getItem("sid");
+
+    try {
+        if(sid){
+            let r = await fetch("/resume/" + sid);
+            let d = await r.json();
+
+            if(d.error){
+                localStorage.clear();
+                return start();
+            }
+
+            if(d.finished){
+                showResult(d);
+                return;
+            }
+
+            time = d.time;
+            showTime();
+            updateQuestionNumber(d.index);
+            updateProgress(d.index);
+
+            document.getElementById("q").innerText = d.question;
+            startTimer();
+        }
+        else{
+            let r = await fetch("/start",{method:"POST"});
+            let d = await r.json();
+
+            sid = d.session_id;
+            localStorage.setItem("sid", sid);
+
+            time = d.time;
+            showTime();
+            updateQuestionNumber(d.index);
+            updateProgress(d.index);
+
+            document.getElementById("q").innerText = d.question;
+            startTimer();
+        }
+    }
+    catch(err){
+        console.error(err);
+        localStorage.clear();
+        location.reload();
+    }
+}
+
+// SUBMIT
+async function submitAns(){
+    let ans = document.getElementById("a").value;
+
+    let r = await fetch("/answer",{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({session_id:sid,answer:ans})
+    });
+
+    let d = await r.json();
+
+    if(d.finished){
+        showResult(d);
+        return;
+    }
+
+    time = d.time;
+    showTime();
+    updateQuestionNumber(d.index);
+    updateProgress(d.index);
+
+    let qEl = document.getElementById("q");
+
+    qEl.style.opacity = 0;
+
+    setTimeout(() => {
+        qEl.innerText = d.question;
+        qEl.style.opacity = 1;
+    }, 300);
+
+    document.getElementById("a").value = "";
+}
+
+// RESULT
+function showResult(d){
+    clearInterval(interval);
+    localStorage.clear();
+
+    document.getElementById("quiz").style.display = "none";
+
+    let message = "";
+
+    if(d.percentage >= 80){
+        message = "🔥 Excellent work!";
+        launchConfetti();
+    }
+    else if(d.percentage >= 60){
+        message = "👏 Good job!";
+    }
+    else if(d.percentage >= 40){
+        message = "🙂 Keep practicing!";
+    }
+    else{
+        message = "💪 Try again!";
+    }
+
+    document.getElementById("result").innerHTML = `
+        <div class="result-card">
+            <h3>Final Result</h3>
+            <p>Score: ${d.total_score}/5</p>
+            <p>Percentage: ${d.percentage}%</p>
+            <p>Grade: ${d.grade}</p>
+            <p style="margin-top:15px; color:#ffd369;">${message}</p>
+        </div>
+    `;
+}
+
+// CONFETTI
+function launchConfetti(){
+    confetti({
+        particleCount: 150,
+        spread: 80,
+        origin: { y: 0.6 }
+    });
+}
+
+start();
+</script>
+
+</body>
+</html>
